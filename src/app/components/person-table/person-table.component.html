@@ -1,17 +1,7 @@
-<div class="container mt-4">
-  <div class="d-flex gap-5 align-items-center">
-    <h1>Coding Factory</h1>
-    <h2>Introduction to Angular</h2>
-  </div>
-  <div class="bg-success p-2 text-light">
-    <h3>Welcome to Angular</h3>
-  </div>
-</div>
-
-<div class="container mt-4">
-  <p>Hello <strong>{{ name }}</strong></p>
-  
+<div>
+  <h1>From person table component</h1>
   <table class="table table-bordered w-50">
+    <caption>Person Details</caption>
     <tr>
       <td class="fw-semibold text-end">First name</td>
       <td class="ps-2">{{person.givenName}}</td>
@@ -29,8 +19,4 @@
       <td class="ps-2">{{person.email}}</td>
     </tr>
   </table>
-</div>
-
-<div class="d-flex gap-5 text-nowrap">
-  <app-person-table></app-person-table>
 </div>
