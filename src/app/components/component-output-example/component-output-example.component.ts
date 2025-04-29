@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject, inject } from '@angular/core';
 import { EPerson, ManyPerson } from 'src/app/shared/interfaces/eperson';
 import { SimpleDatatableComponent } from '../simple-datatable/simple-datatable.component';
+import { PersonTableComponent } from '../person-table/person-table.component';
+import { Dialog, DialogRef, DIALOG_DATA, DialogModule} from "@angular/cdk/dialog"
 
 @Component({
   selector: 'app-component-output-example',
@@ -10,10 +12,17 @@ import { SimpleDatatableComponent } from '../simple-datatable/simple-datatable.c
 })
 export class ComponentOutputExampleComponent {
   manyPerson = ManyPerson;
+  dialog = inject(Dialog)
+
+  // constructor(public dialog: Dialog)
+  
 
   showPersonClicked(person: EPerson) {
     console.log("Component Output ", person);
-    alert(this.personTemplate(person))
+    // alert(this.personTemplate(person))
+    this.dialog.open(PersonDialogComponent, {
+      data: person
+    })
   }
 
   personTemplate(person: EPerson) {
@@ -28,4 +37,30 @@ export class ComponentOutputExampleComponent {
     `
   }
 
+}
+
+@Component({
+  imports:[PersonTableComponent],
+  template: 
+  `
+  <app-person-table [personInput]="person"></app-person-table>
+  <button class="btn btn-primary btn-sm" (click)="dialogRef.close()">Close</button>
+  `,
+  styles: [
+    `
+    :host {
+      display:block;
+      background: #fff;
+      border-radius: 8px;
+      padding: 16px;
+      max-width: 500px;
+      }
+    `
+  ]
+})
+export class PersonDialogComponent {
+  dialogRef = inject(DialogRef);
+  constructor(
+    @Inject(DIALOG_DATA) public person: EPerson
+  ){}
 }
