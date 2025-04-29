@@ -6,7 +6,7 @@ import { Dialog, DialogRef, DIALOG_DATA, DialogModule} from "@angular/cdk/dialog
 
 @Component({
   selector: 'app-component-output-example',
-  imports: [SimpleDatatableComponent],
+  imports: [DialogModule, SimpleDatatableComponent],
   templateUrl: './component-output-example.component.html',
   styleUrl: './component-output-example.component.css'
 })
@@ -40,24 +40,50 @@ export class ComponentOutputExampleComponent {
 }
 
 @Component({
-  imports:[PersonTableComponent],
-  template: 
-  `
-  <app-person-table [personInput]="person"></app-person-table>
-  <button class="btn btn-primary btn-sm" (click)="dialogRef.close()">Close</button>
+  imports: [],
+  template: `
+    <table class="table table-bordered w-50">
+      <caption>
+        Person Details
+      </caption>
+      <tr>
+        <td class="fw-semibold text-left">First Name</td>
+        <td class="ps-2">{{ person.givenName }}</td>
+      </tr>
+      <tr>
+        <td class="fw-semibold text-left">Last Name</td>
+        <td class="ps-2">{{ person.surName }}</td>
+      </tr>
+      <tr>
+        <td class="fw-semibold text-left">Age</td>
+        <td class="ps-2">{{ person.age }}</td>
+      </tr>
+      <tr>
+        <td class="fw-semibold text-left">Email</td>
+        <td class="ps-2">{{ person.email }}</td>
+      </tr>
+      <tr>
+        <td class="fw-semibold text-left">Education</td>
+        <td class="ps-2">{{ person.education }}</td>
+      </tr>
+    </table>
+    <button class="btn btn-primary btn-sm" (click)="dialogRef.close()">
+      Close
+    </button>
   `,
   styles: [
     `
-    :host {
-      display:block;
-      background: #fff;
-      border-radius: 8px;
-      padding: 16px;
-      max-width: 500px;
+      :host {
+        display: block;
+        background: #fff;
+        border-radius: 8px;
+        padding: 16px;
+        max-width: 500px;
       }
-    `
-  ]
+    `,
+  ],
 })
+
 export class PersonDialogComponent {
   dialogRef = inject(DialogRef);
   constructor(
