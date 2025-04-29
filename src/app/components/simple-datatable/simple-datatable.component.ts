@@ -29,9 +29,21 @@ export class SimpleDatatableComponent {
       this.data = sortBy(this.data, sortKey)
     }
     
+    for (let key in this.sortOrder) {
+      if (key !== sortKey) {
+        this.sortOrder[key as keyof EPerson] = "none"
+      }
+    }
+    console.log(this.sortOrder)
   }
 
   onPersonClicked(person: EPerson) {
     console.log("Person>>>> ", person);
+  }
+
+  sortSign(sortKey: keyof EPerson): string {
+    if (this.sortOrder[sortKey] === "asc") return "\u2191"
+    else if (this.sortOrder[sortKey] === "desc") return "\u2193"
+    else return "";
   }
 }
