@@ -19,8 +19,15 @@ export class SimpleDatatableComponent {
     education: "none"
   }
 
-  sortData(sortKey: keyof EPerson) {
+  sortData(sortKey: keyof EPerson): void {
     console.log(sortKey);
+    if (this.sortOrder[sortKey] === "asc") {
+      this.sortOrder[sortKey] ="desc"
+      this.data = sortBy(this.data, sortKey).reverse()
+    } else {
+      this.sortOrder[sortKey] = "asc";
+      this.data = sortBy(this.data, sortKey)
+    }
     
   }
 
