@@ -21,8 +21,13 @@
 
     <mat-form-field>
       <mat-label>Email</mat-label>
-      <input matInput ngModel required type="email" name="email" #email="ngModel"/>
-      <mat-error>Email is required</mat-error>
+      <input matInput ngModel required type="text" name="email" #email="ngModel" pattern="[a-zA-Z0-9\.\-]+@[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,}"/>
+      @if (email.errors && email.errors["required"]) {
+        <mat-error>Email is required</mat-error>
+      }
+      @if (email.errors && email.errors["pattern"]) {
+        <mat-error>Invalid Email</mat-error>
+      }
     </mat-form-field>
 
     <mat-form-field>
@@ -36,6 +41,7 @@
     </mat-form-field>
   </form>
   <!-- ΟΣΟ Η ΦΟΡΜΑ ΜΟΥ ΕΙΝΑΙ INVALID: [disabled]="eForm.invalid" -->
-  <button mat-flat-button [disabled]="eForm.invalid" color="primary">Submit</button>
-  <button>Set value</button>
+  <button mat-flat-button [disabled]="eForm.invalid" color="primary" (click)="onSubmit(eForm.value)">Submit</button>
+  <button (click)="onSetValue()">Set value</button>
+  <!-- {{eForm.value | json}} -->
 </div>

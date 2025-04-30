@@ -18,9 +18,17 @@
       <td class="fw-semibold text-left">Email</td>
       <td class="ps-2">{{personInput?.email}}</td>
     </tr>
-    <tr>
-      <td class="fw-semibold text-left">Address</td>
-      <td class="ps-2">{{personInput?.address}}</td>
-    </tr>
+    @if (isPerson()) {
+      <tr>
+        <td class="fw-semibold text-left">Address</td>
+        <td class="ps-2">{{addressOrEducation}}</td>
+      </tr>
+    }
+    @if (isEPerson()) {
+      <tr>
+        <td class="fw-semibold text-left">Address</td>
+        <td class="ps-2">{{addressOrEducation}}</td>
+      </tr>
+    }
   </table>
 </div>
