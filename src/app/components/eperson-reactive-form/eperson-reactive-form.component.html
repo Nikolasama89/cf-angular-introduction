@@ -1,0 +1,39 @@
+<div class="d-flex flex-column">
+  <h5>New Person Form</h5>
+  <!-- εδω γινεται η συνδεση της φορμας που εχουμε φτιαξει εμεις στο component -->
+  <form [formGroup]="form" class="d-flex flex-column">
+    <mat-form-field>
+      <mat-label>First name</mat-label>
+      <input type="text" matInput formControlName="givenName">
+      <mat-error>First name is required field</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Last name</mat-label>
+      <input type="text" matInput formControlName="surName">
+      <mat-error>Last name is required field</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Age</mat-label>
+      <input type="text" matInput formControlName="age">
+      <mat-error>Age is required field</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input type="email" matInput formControlName="email">
+      <mat-error>Email is required field</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Education</mat-label>
+      <mat-select formControlName="education">
+        <mat-option value="Some college, no degree">Some college, no degree</mat-option>
+        <mat-option value="Master's degree">Master's degree</mat-option>
+        <mat-option value="Bachelor degree">Bachelor degree</mat-option>
+        <mat-option value="Associates's degree">Associates's degree</mat-option>
+      </mat-select>
+      <mat-error>Education is required field</mat-error>
+    </mat-form-field>
+  </form>
+  <!-- κουμπι ανενεργο αν η φορμα ειναι invalid -->
+  <button mat-flat-button color="primary" [disabled]="form.invalid" (click)="onSubmit(form.value)">Submit</button>
+  <button (click)="onSetValue()">Set Value</button>
+</div>

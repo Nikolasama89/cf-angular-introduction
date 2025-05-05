@@ -1,34 +1,39 @@
-<div>
-  <!-- <h1>From person table component</h1> -->
-  <table class="table table-bordered w-50">
-    <caption>Person Details</caption>
-    <tr>
-      <td class="fw-semibold text-left">First name</td>
-      <td class="ps-2">{{personInput?.givenName}}</td>
-    </tr>
-    <tr>
-      <td class="fw-semibold text-left">Last name</td>
-      <td class="ps-2">{{personInput?.surName}}</td>
-    </tr>
-    <tr>
-      <td class="fw-semibold text-left">Age</td>
-      <td class="ps-2">{{personInput?.age}}</td>
-    </tr>
-    <tr>
-      <td class="fw-semibold text-left">Email</td>
-      <td class="ps-2">{{personInput?.email}}</td>
-    </tr>
-    @if (isPerson()) {
+@if (!personInput) {
+  <div class="alert alert-danger text-center">No Person Details</div>
+} @else {
+  <div>
+    <!-- <h1>From person table component</h1> -->
+    <table class="table table-bordered w-50">
+      <caption>Person Details</caption>
       <tr>
-        <td class="fw-semibold text-left">Address</td>
-        <td class="ps-2">{{addressOrEducation}}</td>
+        <td class="fw-semibold text-left">First name</td>
+        <td class="ps-2">{{personInput!.givenName}}</td>
       </tr>
-    }
-    @if (isEPerson()) {
       <tr>
-        <td class="fw-semibold text-left">Address</td>
-        <td class="ps-2">{{addressOrEducation}}</td>
+        <td class="fw-semibold text-left">Last name</td>
+        <td class="ps-2">{{personInput!.surName}}</td>
       </tr>
-    }
-  </table>
-</div>
+      <tr>
+        <td class="fw-semibold text-left">Age</td>
+        <td class="ps-2">{{personInput!.age}}</td>
+      </tr>
+      <tr>
+        <td class="fw-semibold text-left">Email</td>
+        <td class="ps-2">{{personInput!.email}}</td>
+      </tr>
+      @if (isPerson()) {
+        <tr>
+          <td class="fw-semibold text-left">Address</td>
+          <td class="ps-2">{{addressOrEducation}}</td>
+        </tr>
+      }
+      @if (isEPerson()) {
+        <tr>
+          <td class="fw-semibold text-left">Address</td>
+          <td class="ps-2">{{addressOrEducation}}</td>
+        </tr>
+      }
+    </table>
+  </div>
+}
+
