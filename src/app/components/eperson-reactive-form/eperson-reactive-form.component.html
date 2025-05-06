@@ -34,6 +34,6 @@
     </mat-form-field>
   </form>
   <!-- κουμπι ανενεργο αν η φορμα ειναι invalid -->
-  <button mat-flat-button color="primary" [disabled]="form.invalid" (click)="onSubmit(form.value)">Submit</button>
+  <button mat-flat-button color="primary" [disabled]="form.invalid" (click)="onSubmit()">Submit</button>
   <button (click)="onSetValue()">Set Value</button>
 </div>
