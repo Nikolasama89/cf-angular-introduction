@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { PersonTableComponent } from '../person-table/person-table.component';
 import { SimpleDatatableComponent } from '../simple-datatable/simple-datatable.component';
 import { EpersonReactiveFormComponent } from '../eperson-reactive-form/eperson-reactive-form.component';
 import { EPerson } from 'src/app/shared/interfaces/eperson';
-import { Person } from 'src/app/shared/interfaces/person';
-import { D } from '@angular/cdk/keycodes';
+import { PersonService } from 'src/app/shared/services/person.service';
 
 @Component({
   selector: 'app-reactive-form-example',
@@ -13,7 +12,7 @@ import { D } from '@angular/cdk/keycodes';
   styleUrl: './reactive-form-example.component.css'
 })
 export class ReactiveFormExampleComponent {
-
+  personService = inject(PersonService)
   currentPerson: EPerson | undefined
   persons: EPerson[] = []
 
@@ -22,5 +21,6 @@ export class ReactiveFormExampleComponent {
     console.log("Father: ", data)
     this.currentPerson = data
     this.persons.push(data)
+    this.personService.modifiedDateTable.set(true)
   }
 }
