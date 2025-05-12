@@ -16,6 +16,12 @@ import { User } from 'src/app/shared/interfaces/user';
 })
 export class UserRegistrationComponent {
   userService = inject(UserService)
+
+  registrationStatus: {success: boolean, message: string} = {
+    //Initial Value
+    success: false,
+    message: "Not attempted yet"
+  }
   
   form = new FormGroup({
     username: new FormControl("", Validators.required),
@@ -64,9 +70,11 @@ export class UserRegistrationComponent {
     this.userService.registerUser(data).subscribe({
       next: (response) => {
         console.log("User Saved", response);
+        this.registrationStatus = {success: true, message: "User Registered"}
       },
       error: (response) => {
         console.log("User not Saved", response);  
+        this.registrationStatus = {success: false, message: response.data}
       }
     })
   }
@@ -88,5 +96,10 @@ export class UserRegistrationComponent {
         }
       })
     }
+  }
+
+  registerAnother() {
+    this.form.reset()
+    this.registrationStatus = {success: false, message: "Not Attempted yet"}
   }
 }
