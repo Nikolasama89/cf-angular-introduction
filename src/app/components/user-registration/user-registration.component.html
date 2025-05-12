@@ -16,14 +16,20 @@
 
     <mat-form-field>
       <mat-label>Last name</mat-label>
-      <input matInput type="text" formControlName="surname">
+      <input matInput type="text" formControlName="surname" >
       <mat-error>Last Name is required</mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>Email</mat-label>
-      <input matInput type="text" formControlName="email">
-      <mat-error>Email is required</mat-error>
+      <input matInput type="text" formControlName="email" (blur)="check_duplicate_email()">
+      @if (form.get("email")?.hasError("duplicateEmail")) {
+        <mat-error>Email is already registered</mat-error>
+      } @else {
+        @if (form.get("email")?.invalid && form.get("email")?.touched) {
+            <mat-error>Email is missing or Invalid</mat-error>
+          }
+      }
     </mat-form-field>
 
     <div class="d-flex gap-2" formGroupName="address">
