@@ -45,6 +45,34 @@
         </mat-form-field>
       </div>
 
+      <div formArrayName="phone">
+        @for (p of phone.controls; let i = $index; track i) {
+          <div [formGroupName]="i" class="d-flex gap-3 align-items-center">
+            <mat-form-field>
+              <mat-label>Phone Number</mat-label>
+              <input type="text" matInput formControlName="number">
+              <mat-error>Phone Number is required</mat-error>
+            </mat-form-field>
+            
+            <mat-form-field>
+              <mat-label>Phone Type</mat-label>
+              <mat-select formControlName="type">
+                <mat-option value="Mobile">Mobile</mat-option>
+                <mat-option value="Home">Home</mat-option>
+                <mat-option value="Work">Work</mat-option>
+              </mat-select>
+            </mat-form-field>
+            @if (phone.controls.length > 1 && i != 0) {
+            <mat-icon role="button" class="cursor-pointer" (click)="removePhoneNumber(i)">delete</mat-icon>
+          }
+            @if (phone.controls[i].valid) {
+            <mat-icon role="button" class="cursor-pointer" (click)="addPhoneNumber()">add</mat-icon>
+          }
+          </div>
+          
+      }
+      </div>
+
       <mat-form-field>
         <mat-label>Password</mat-label>
         <input type="password" matInput formControlName="password">
